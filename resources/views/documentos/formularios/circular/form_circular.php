@@ -23,8 +23,11 @@
 
 
 <div class="form-group col-xs-12">
-Cuerpo del documeto
+ <label for="nombre">Descripción</label>
+<textarea id="editor" id="editor" class="form-control"></textarea> 
 
 </div>
+
+
 
 

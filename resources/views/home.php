@@ -308,6 +308,7 @@
     <script src="dist/js/pages/dashboard.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="dist/js/demo.js"></script>
+    <script src="ckeditor/ckeditor.js"></script>
  
  <!-- javascript del sistema laravel -->
    <script src="js/sistemalaravel.js"></script>
