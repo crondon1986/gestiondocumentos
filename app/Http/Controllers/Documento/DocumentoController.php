@@ -65,8 +65,11 @@ class DocumentoController extends Controller {
 		//$view=$data['id_html_documento'];
 		//echo $view;die();
        $pdf = \App::make('dompdf.wrapper');
-
+//cargarplantillapdf
 		$view=$codigo;
+		$data=0;
+		$date=0;
+ $view =  \View::make('documentos.formularios.circular.circular_pdf', compact('data', 'date'))->render();
         $pdf->loadHTML($view);
         $tipo=1;
         if($tipo==1){return $pdf->stream('reporte');}
