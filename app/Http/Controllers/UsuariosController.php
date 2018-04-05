@@ -41,7 +41,7 @@ class UsuariosController extends Controller {
 
 	public function listado_usuarios()
     {
-        $usuarios= User::paginate(25);  
+        $usuarios= User::paginate(1);  
         $paises=Pais::all();
         return view('listados.listado_usuarios')
         ->with("paises", $paises )

@@ -1,7 +1,5 @@
 
 <?php
-echo '<pre>';//print_r($datos_fijos);
-print_r($data); 
 
 /* echo '<pre>';print_r($datos_fijos);
 print_r($data); 
@@ -103,17 +101,23 @@ die();
 
 <p style="text-align:right"><span style="font-family:Arial,Helvetica,sans-serif"><span style="font-size:12px"><strong>DI-100/18</strong></span></span></p>
 
-<p><span style="font-family:Arial,Helvetica,sans-serif"><span style="font-size:12px"><strong>PARA: &nbsp;</strong></span></span></p>
+<p><span style="font-family:Arial,Helvetica,sans-serif"><span style="font-size:12px"><strong>Ciudadano(a):</strong></span></span></p>
 
-<p><span style="font-family:Arial,Helvetica,sans-serif"><span style="font-size:12px"><strong>DE: &nbsp;</strong></span></span></p>
+<p><span style="font-family:Arial,Helvetica,sans-serif"><span style="font-size:12px"><strong>Prof(a). Mariluz Suarez</strong></span></span></p>
 
+<p><span style="font-family:Arial,Helvetica,sans-serif"><span style="font-size:12px"><strong>Departamento de Informatica</strong></span></span></p>
 
+<p><span style="font-family:Arial,Helvetica,sans-serif"><span style="font-size:12px"><strong>Presente.-</strong></span></span></p>
 
+<p style="margin-left:40px; text-align:justify"><span style="font-family:Arial,Helvetica,sans-serif"><span style="font-size:12px">Estimado(a)&nbsp;<strong>Prof(a). Mariluz Suarez., antes que nada uncordial saludo.</strong></span></span></p>
 
+<p style="text-align:justify"><span style="font-family:Arial,Helvetica,sans-serif"><span style="font-size:12px">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; A trav&eacute;s de la presente cumplo con informarle que, en reuni&oacute;n del Consejo de Escuela de Ciencias, de fecha 13/04/2016, usted fue designado Jurado Principal para la discusi{on y evaluaci&oacute;n del Trabajo de Grado intitulado &quot;<strong>SISTEMA DE INFORMACION GEOGRAFICA BAJO PLATAFORMA MOVIL PARA SUGERENCIA DE RUTAS DENTRO DEL PERIMETRO DE LA CIUDAD DE CUMANA ESTADO SUCRE</strong>&quot;, presentado por el&nbsp; (la)&nbsp; <strong>Br. ANTONIO JOSE SUCRE ROMERO</strong>, como requisito para obtener el Ttitulo de Licenciado en Informatica.</span></span></p>
 
+<p>&nbsp;</p>
 
+<p><span style="font-family:Arial,Helvetica,sans-serif"><span style="font-size:12px">&nbsp; &nbsp; &nbsp; &nbsp; Anexo a &eacute;sta se le envia un ejemplar del trabajo mencionado, para su revisi&oacute;n y evaluaci&oacute;n.</span></span></p>
 
-
+<p><span style="font-family:Arial,Helvetica,sans-serif"><span style="font-size:12px">&nbsp; &nbsp; &nbsp; &nbsp; Sirvase ponerse en comunicaci&oacute;n con los otros miembros del jurado: <strong>Prof(a). Eugenio Betancourt (Principal), Luciana Perez (Suplente) y Prof(a). Daniel Geremia (Suplente)</strong>, a fin de acordar fecha y hora de la discusi&oacute;n de la tesis.</span></span></p>
 
 <p style="text-align:justify"><span style="font-family:Arial,Helvetica,sans-serif"><span style="font-size:12px">&nbsp; &nbsp; &nbsp; &nbsp;Sin otro particular, se despide de usted.</span></span></p>
 
@@ -156,6 +160,6 @@ die();
 
 </div>
           
-        
+         {HTML_ANEXOS}
 </body>
 </html>

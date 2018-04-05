@@ -1,3 +1,4 @@
+<?php //echo '<pre>'; print_r($categoria); ?>
 <div class="box box-primary col-xs-12">
                 
                  <div class="box-header">
@@ -9,38 +10,40 @@
   
   <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">  
 
-    <input id='id_html_documento' type="hidden" name="id_html_documento" value="">              
+
+    <input id='id_html_documento' type="hidden" name="id_html_documento" value="">
+
+    <input id='id_dependencia' type="hidden" name="id_dependencia" value=" <?= $usuario->id_dependenciatony; ?>">
+    <input id='cedula_usuario' type="hidden" name="cedula_usuario" value=" <?= $usuario->cedula; ?>">
+    <input id='id_html_documento' type="hidden" name="id_html_documento" value="">
 
 
 <div class="box-body col-xs-12">
   <div  class="form-group col-xs-12">
           <label for="nombre">Categoría*</label>
             <select id="categoria_documento" name="categoria_documento" class="form-control">
-
-                        <option  value="1 ">Administrativo</option>
-                        <option value="2 ">Acádemico</option>
+                        <option   value="">Seleccione</option>
+                 <?php foreach($categoria as $pais){   ?>
+              <option value="<?= $pais->id_categoria; ?>" > <?= $pais->nombre_categoria ?></option>
+            <?php }  ?>
             </select>
   </div>
   <div  class="form-group col-xs-12">
             <label for="nombre">Tipo de Documento</label>
             <select  value="" id="id_documento" name="id_documento" class="form-control">
-                  <option   value="">Seleccione</option>
-                  <option  value="1">Convocatoria</option>
-                  <option value="3 ">Oficios</option>
+                
+            </select>
+  </div>
+  <div  class="form-group col-xs-12">
+            <label for="nombre">Plantilla</label>
+            <select  value="" id="id_plantilla" name="id_plantilla" class="form-control">
+                 
             </select>
   </div>
 
 
 
-<div class="form-group col-xs-12">
-                      <label for="nombre">Destinos*</label>
-                       <select id="departamento" name="departamento" class="form-control">
 
-<option  value="1 ">Departamento de Ciencias</option>
-<option value="2 ">Departamento de Matematicas</option>
-<option value="3 ">departamento de Biologia</option>
-</select>
-</div>
 
 
 

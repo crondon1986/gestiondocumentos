@@ -8,6 +8,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Excel;
 use App\Pais;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Response;
+use App\Categoria;
+use App\Subcategoria;
+use App\Itemsubcategoria;
+use App\Dependencia;
 
 
 class DocumentoController extends Controller {
@@ -35,7 +41,17 @@ class DocumentoController extends Controller {
 
 	 public function cargar_plantilla()
 	{
-		return view('documentos.crear');
+	/*$sql="select * from users";
+		$result=DB::select($sql);
+		;*/
+		//echo '<pre>';print_r($result); die();
+		//$usuarios= User::paginate(1);  
+        //$paises=Pais::all();
+		$result=Categoria::all();
+		  $usuarioactual=\Auth::user();
+      // return view('home')->with("usuario",  $usuarioactual);
+		return view('documentos.crear')->with("categoria", $result )->with("usuario",  $usuarioactual);
+
 	}
 
 	 public function cargar_formulario_circular()
@@ -46,8 +62,14 @@ class DocumentoController extends Controller {
 	public function generar_plantillapdf(Request $request){
 		//datos delformulario para nuevo usuario
 		$data=$request->all();
+		 $usuarioactual=\Auth::user();
+		 $id_dependecia=$usuarioactual->id_dependencia;
+		 $sql="SELECT upper( dep.nombre_dependencia) dependencia, upper( dep1.nombre_dependencia)Escuela, upper( inst.nombre_institucion) universidad ,prof.nombres_profesor, prof.apellidos_profesor, 'Jefe de' cargo FROM dependencia dep LEFT JOIN dependencia dep1 ON dep.relacion_dependecia = dep1.id_dependecia LEFT JOIN institucion inst ON inst.id_institucion = dep.id_institucion LEFT JOIN profesor prof on prof.cedula_profesor=dep.cedula_jefe WHERE dep.id_dependecia = $id_dependecia";
+
+$datos_fijos=DB::select($sql);
+
 		//->with("msj","Usuario Registrado Correctamente")
-		return view('documentos.formularios.circular.circular_pdf')->with("data",$data);
+		return view('documentos.formularios.circular.circular_pdf')->with("data",$data)->with("datos_fijos",$datos_fijos);
 	}
 
 	public function guardardocumento(Request $request){
@@ -77,7 +99,45 @@ class DocumentoController extends Controller {
 	
 	}
 
-	  public function crearPDF($datos,$vistaurl,$tipo)
+	public function datos_subcatgoria($codigo){
+		//$view=$data['id_html_documento'];
+		//echo $view;die();
+		$codigo=($codigo!='' && $codigo!=null )?$codigo:0;
+		$sql="select * from subcategoria_documento where id_categoria=$codigo order by id_subcategoria;";
+		$result=DB::select($sql);
+		//$result=Subcategoria::Busqueda($codigo);
+		//print_r($result);
+		//$sql="select * from subc"
+
+     	return Response::json($result);
+	
+	}
+
+
+
+	public function datos_itemsubcatgoria($codigo){
+		//$view=$data['id_html_documento'];
+		//echo $view;die();
+		$codigo=($codigo!='' && $codigo!=null )?$codigo:0;
+		$sql="select * from itemsubcategoria where id_subcategoria=$codigo order by id_itemsubcategoria;";
+		$result=DB::select($sql);
+		//$result=Subcategoria::Busqueda($codigo);
+		//print_r($result);
+		//$sql="select * from subc"
+
+     	return Response::json($result);
+	
+	}
+	public function dependencias(){
+		//$codigo=($codigo!='' && $codigo!=null )?$codigo:0;
+		//$sql="select * from itemsubcategoria where id_subcategoria=$codigo order by id_itemsubcategoria;";
+		$result=Dependencia::all();
+     	return Response::json($result);
+	}
+
+
+
+	/*  public function crearPDF($datos,$vistaurl,$tipo)
     {
 
         $data = $datos;
@@ -90,7 +150,9 @@ class DocumentoController extends Controller {
         
         if($tipo==1){return $pdf->stream('reporte');}
         if($tipo==2){return $pdf->download('reporte.pdf'); }
-    }
+    }*/
+
+
 
 
 

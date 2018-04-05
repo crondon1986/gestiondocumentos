@@ -1,6 +1,19 @@
+var Arr_dependencia=[];
+function variable_globales(){
+   var url= "dependencias";
+      $.get(url,function(resul){
+        //arrsubcategoria
+        Arr_dependencia=resul;
+        
+      });  
+
+}
+
+
 function cargar_formulario(arg){
 //funcion que carga todos los formularios del sistema
-  //alert('crear');
+  //alert('crear');()
+  variable_globales();
   switch(arg){
     case '1'://convacatorias
 
@@ -10,7 +23,7 @@ function cargar_formulario(arg){
         //cargar formulrio generar
 
         $("#contenido_principal").html($("#cargador_empresa").html());  
-        var url= "crear"
+        var url= "crear";
         $.get(url,function(resul){
         $("#contenido_principal").html(resul);
         //activar eventos a la pantilla
@@ -19,11 +32,54 @@ function cargar_formulario(arg){
 
     break;
   }
+}
 
   function event_plantilla(){
+    $("#categoria_documento").select2();
+    $("#id_documento").select2();
+    $("#id_plantilla").select2();
+
+
+    $("#categoria_documento").change(function(arg){
+     // alert(this.value);
+       var url = "datos_subcatgoria/"+this.value+"";
+       //alert(url);//extraer dato del select
+      $.get(url,function(resul){
+        //arrsubcategoria
+         //$("#id_plantilla").html("");
+         //$("#id_documento").html("");
+         $("#id_documento").select2("val", "");
+         $("#id_plantilla").select2("val", "");
+         $("#id_documento").html("");
+        $("#id_documento").append('<option value=""></option>');
+        $("#id_plantilla").append('<option value=""></option>');
+      $.each(resul,function(key, registro) {
+        $("#id_documento").append('<option value='+registro.id_subcategoria+'>'+registro.nombre_subcategoria+'</option>');
+      });
+      })
+    })
+
+//datos_itemsubcatgoria
     $("#id_documento").change(function(arg){
-       alert(this.value);
-       var valor=this.value
+      var url = "datos_itemsubcatgoria/"+this.value+"";
+       //alert(url);//extraer dato del select
+        $.get(url,function(resul){
+        //arrsubcategoria
+         //$("#id_plantilla").html("");
+         $("#id_plantilla").select2("val", "");
+         $("#id_plantilla").html("");
+           $("#id_plantilla").append('<option value=""></option>');
+         //alert('eliminar');
+        $.each(resul,function(key, registro) {
+        $("#id_plantilla").append('<option value='+registro.id_itemsubcategoria+'>'+registro.nombre_itemsubcategoria+'</option>');
+        });
+      })
+     });
+
+//plantilla
+  $("#id_plantilla").change(function(arg){
+      //alert(valor);
+      var valor= $('#id_documento').val();
       switch(valor){
       case '1'://convacatorias
             $("#formulario_documento").html($("#cargador_empresa").html());  
@@ -31,17 +87,29 @@ function cargar_formulario(arg){
             $.get(url,function(resul){
             $("#formulario_documento").html(resul);
               initSample();
-            })
+            $("#id_departamento_d").select2();
 
+            $.each(Arr_dependencia,function(key, registro) {
+              
+              $("#id_departamento_d").append('<option value='+registro.id_dependencia+'>'+registro.nombre_dependencia+'</option>');
+              
+              });
+            })
          break;
           }
+      
 
     })
-fdffdffdf
+
+
 
 //envio datos par cONSTRUIR LA PLANTILLA Y LEVANTAR LA MODAL
  $('#generar_documento').click(function(){
   //enviar formulario
+
+var contenido = CKEDITOR.instances['editor'].getData();
+
+alert(contenido);
 var varurl='cargarplantillapdf';
 var variablesFORM=$('#id_form_documentos').serialize();
  // alert(variablesFORM);
@@ -103,73 +171,6 @@ var variablesFORM=$('#id_form_documentos').serialize();
 
 });
 
-   
-  // 
-  }
-
-  /*e.preventDefault();
-        var formu=$(this);
-        var nombreform=$(this).attr("id");
-        var rs=false; //leccion 10
-        var seccion_sel=  $("#seccion_seleccionada").val();
-        if(nombreform=="f_subir_imagen" ){ var miurl="subir_imagen_usuario";  var divresul="notificacion_resul_fci";   }
-        if(nombreform=="f_cargar_datos_usuarios" ){ var miurl="cargar_datos_usuarios";  var divresul="notificacion_resul_fcdu"; rs=true; }
-        if(nombreform=="f_agregar_publicacion" ){ var miurl="agregar_publicacion_usuario";  var divresul="notificacion_resul_fap"; rs=true; }
-        if(nombreform=="f_agregar_proyectos" ){ var miurl="agregar_proyectos_usuario";  var divresul="notificacion_resul_fapr"; rs=true; }
-         if(nombreform=="f_enviar_correo" ){ var miurl="enviar_correo";  var divresul="contenido_principal";   }
-
-        //información del formulario
-        var formData = new FormData($("#"+nombreform+"")[0]);
-
-        //hacemos la petición ajax   
-        $.ajax({
-            url: miurl,  
-            type: 'POST',
-     
-            // Form data
-            //datos del formulario
-            data: formData,
-            //necesario para subir archivos via ajax
-            cache: false,
-            contentType: false,
-            processData: false,
-            //mientras enviamos el archivo
-            beforeSend: function(){
-              $("#"+divresul+"").html($("#cargador_empresa").html());                
-            },
-            //una vez finalizado correctamente
-            success: function(data){
-              $("#"+divresul+"").html(data);
-              $("#fotografia_usuario").attr('src', $("#fotografia_usuario").attr('src') + '?' + Math.random() );  
-
-                 if(rs ){
-                         $('#'+nombreform+'').trigger("reset");
-                         mostrarseccion(seccion_sel);
-                        }             
-            },
-            //si ha ocurrido un error
-            error: function(data){
-               alert("ha ocurrido un error") ;
-                
-            }
-        });*/
-
-
-
-
-
-
-  
-
- 
-   /* if(arg==1){ var url = "form_nuevo_usuario"; }
-    if(arg==2){ var url = "form_cargar_datos_usuarios";  }
-    if(arg==3){ var url = "form_enviar_correo";  }
-
-    $("#contenido_principal").html($("#cargador_empresa").html());   
-    $.get(url,function(resul){
-      $("#contenido_principal").html(resul);
-  })*/
 }
         
 

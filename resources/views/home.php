@@ -32,6 +32,7 @@
 
      <link rel="stylesheet" href="css/sistemalaravel.css">
 
+    <link rel="stylesheet" href="select2/select2.min.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -187,6 +188,10 @@
               </a>
               <ul class="treeview-menu">
                 <li class="active"><a href="javascript:void(0);" onclick="cargar_formulario();" ><i class="fa fa-circle-o"></i> Crear </a></li>
+                 <li class="active"><a href="javascript:void(0);" onclick="cargar_formulario();" ><i class="fa fa-circle-o"></i> Recibidos </a></li>
+                  <li class="active"><a href="javascript:void(0);" onclick="cargar_formulario();" ><i class="fa fa-circle-o"></i> Enviados </a></li>
+
+                   <li class="active"><a href="javascript:void(0);" onclick="cargar_formulario();" ><i class="fa fa-circle-o"></i> Por Correcciones </a></li>
 
                 <li class="active"><a href="javascript:void(0);" onclick="cargarlistado(3,1);" ><i class="fa fa-circle-o"></i> listar Documentos </a></li>
                 
@@ -309,7 +314,7 @@
     <!-- AdminLTE for demo purposes -->
     <script src="dist/js/demo.js"></script>
     <script src="ckeditor/ckeditor.js"></script>
- 
+    <script src="select2/select2.full.js"></script>
  <!-- javascript del sistema laravel -->
    <script src="js/sistemalaravel.js"></script>
    <script src="js/documentos.js"></script>

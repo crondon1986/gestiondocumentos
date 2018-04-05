@@ -73,4 +73,7 @@ Route::get('circular', 'Documento\DocumentoController@cargar_formulario_circular
 Route::post('cargarplantillapdf','Documento\DocumentoController@generar_plantillapdf');
 Route::post('Guardardocumento','Documento\DocumentoController@guardardocumento');
 Route::get('crear_reporte/{codigo}', 'Documento\DocumentoController@generarpdf');
+Route::get('datos_subcatgoria/{codigo}', 'Documento\DocumentoController@datos_subcatgoria');
+Route::get('datos_itemsubcatgoria/{codigo}', 'Documento\DocumentoController@datos_itemsubcatgoria');
+Route::get('dependencias', 'Documento\DocumentoController@dependencias');
 
