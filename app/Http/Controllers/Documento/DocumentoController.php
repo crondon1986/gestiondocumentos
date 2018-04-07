@@ -10,11 +10,14 @@ use Excel;
 use App\Pais;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Query\Builder;
 use App\Categoria;
 use App\Subcategoria;
 use App\Itemsubcategoria;
 use App\Dependencia;
-
+use App\Circular;
+use App\Documento;
 
 class DocumentoController extends Controller {
 
@@ -63,8 +66,8 @@ class DocumentoController extends Controller {
 		//datos delformulario para nuevo usuario
 		$data=$request->all();
 		 $usuarioactual=\Auth::user();
-		 $id_dependecia=$usuarioactual->id_dependencia;
-		 $sql="SELECT upper( dep.nombre_dependencia) dependencia, upper( dep1.nombre_dependencia)Escuela, upper( inst.nombre_institucion) universidad ,prof.nombres_profesor, prof.apellidos_profesor, 'Jefe de' cargo FROM dependencia dep LEFT JOIN dependencia dep1 ON dep.relacion_dependecia = dep1.id_dependecia LEFT JOIN institucion inst ON inst.id_institucion = dep.id_institucion LEFT JOIN profesor prof on prof.cedula_profesor=dep.cedula_jefe WHERE dep.id_dependecia = $id_dependecia";
+		 $id_dependencia=$usuarioactual->id_dependencia;
+		 $sql="SELECT upper( dep.nombre_dependencia) dependencia, upper( dep1.nombre_dependencia)Escuela, upper( inst.nombre_institucion) universidad ,prof.nombres_profesor, prof.apellidos_profesor, 'Jefe de' cargo FROM dependencia dep LEFT JOIN dependencia dep1 ON dep.relacion_dependencia = dep1.id_dependencia LEFT JOIN institucion inst ON inst.id_institucion = dep.id_institucion LEFT JOIN profesor prof on prof.cedula_profesor=dep.cedula_jefe WHERE dep.id_dependencia = $id_dependencia";
 
 $datos_fijos=DB::select($sql);
 
@@ -74,11 +77,147 @@ $datos_fijos=DB::select($sql);
 
 	public function guardardocumento(Request $request){
 		//datos delformulario para nuevo usuario
-		$data=$request->all();
+//		$data=$request->all();
+
+		//
 		//->with("msj","Usuario Registrado Correctamente");
 		 // echo $view;die();
+	/*	Array
+(
+    [_token] => jBRPb0MhQn9Wia2IW4yVI5nfrorCwIJnjq0E8SLS
+    [id_html_documento] => 
+    [id_dependencia] =>  2
+    [cedula_usuario] =>  18211942
+    [categoria_documento] => 1
+    [id_documento] => 1
+    [id_plantilla] => 1
+    [descricion_documeto] => docuemento para trabajar en el pueblo
+    [para] => licenciado claudio
+    [de] => juan guerra
+    [editor_html] => 
 
-		$view=$data['id_html_documento'];
+Circular
+
+    [editor] => 
+
+Circular
+
+
+    [id_departamento_destino] => 3
+)*/
+
+$data=$request->all();
+      	$codigo=$data['categoria_documento'];
+    switch ($codigo) {
+    	case '1': //circular
+
+    	/*
+    	Para convocatorias
+    	1 Por firmar
+    	2 Por Modificar
+    	4 Enviado
+    	5 Leido
+    	*/
+
+    	$usuarioactual=\Auth::user();
+		$id_dependencia=$usuarioactual->id_dependencia;
+    	$usuarioactual=\Auth::user();
+
+if($usuarioactual->id_perfil==3){//secretaria
+	$codigo_documento_generado=time();
+    $cuerpo_documento_html=$data['id_html_documento_pdf'];
+    $cedula_usuario= $data['cedula_usuario'];
+    $descripcion_documento= $data['descricion_documeto'];
+    $estatus=1;//por firmar
+    $categoria_documento=$data['categoria_documento'];
+    $id_documento=$data['id_documento'];
+
+
+
+    $documento= new Documento;
+    $documento->codigo_plantilla=$codigo_documento_generado;
+    $documento->descripcion_documento=$descripcion_documento;
+    $documento->id_usuario=$usuarioactual->cedula;
+    $documento->id_subcategoria= $id_documento;
+    $documento->html_documento=$cuerpo_documento_html;
+     $documento->id_dependencia_c=$id_dependencia;
+
+    $resul= $documento->save();
+
+}
+    	
+
+
+
+
+
+    	//Codigo documento generado
+   
+    	//codigo id_documento
+    	//[categoria_documento] => 1
+   // [id_documento] => 1
+   // [id_plantilla] => 1
+    		# code...
+    	/*$usuario= new Circular;
+		$usuario->codigo_circular  = "100";
+		$usuario->cedula_jefe=17217387;//$cedula_jefe="18211942";
+		$usuario->nota_circular='prueba';
+		$usuario->para_circular=$data["para"];
+		$usuario->de_circular=$data["De"];
+*/
+	/*	 [id_html_documento]
+    [id_dependencia]
+    [cedula_usuario]
+    [categoria_documento] => 1
+    [id_documento] => 1
+    [id_plantilla] => 1
+    [descricion_documeto] => docuemento para trabajar en el pueblo
+    [para] => licenciado claudio
+    [de] => juan guerra
+    [editor_html] => 
+
+Circular
+
+    [editor] => 
+
+Circular
+
+
+    [id_departamento_destino] => */
+
+
+						
+	/*	$usuario->pais=$data["pais"];
+		$usuario->ciudad=$data["ciudad"];
+		$usuario->email=$data["email"];
+		$usuario->institucion=$data["institucion"];
+		$usuario->ocupacion=$data["ocupacion"];
+		$usuario->password=bcrypt($data["password"]);*/
+
+		//
+
+    		break;
+    	
+    	default:
+    		# code...
+    		break;
+    }
+
+      	/*$usuario= new Documento;
+		$usuario->codigo  = "100";
+		$usuario->descripcion_documento=$data["descricion_documeto"];
+		$usuario->pais=$data["pais"];
+		$usuario->ciudad=$data["ciudad"];
+		$usuario->email=$data["email"];
+		$usuario->institucion=$data["institucion"];
+		$usuario->ocupacion=$data["ocupacion"];
+		$usuario->password=bcrypt($data["password"]);
+
+		$resul= $usuario->save();*/
+
+
+
+		$view=$codigo_documento_generado;
 		return $view; //view('documentos.formularios.circular.circular_pdf')->with("data",$data);
 
 	}
@@ -86,12 +225,19 @@ $datos_fijos=DB::select($sql);
 	public function generarpdf($codigo){
 		//$view=$data['id_html_documento'];
 		//echo $view;die();
+		//
+		$sql="select * from documento where codigo_plantilla=$codigo;";
+		$result=DB::select($sql);
+
+
        $pdf = \App::make('dompdf.wrapper');
 //cargarplantillapdf
-		$view=$codigo;
-		$data=0;
-		$date=0;
- $view =  \View::make('documentos.formularios.circular.circular_pdf', compact('data', 'date'))->render();
+		$view=$result[0]->html_documento;
+		//$data=0;
+		//$date=0;
+
+
+ //$view =  \View::make('documentos.formularios.circular.circular_pdf', compact('data', 'date'))->render();
         $pdf->loadHTML($view);
         $tipo=1;
         if($tipo==1){return $pdf->stream('reporte');}
@@ -153,10 +299,21 @@ $datos_fijos=DB::select($sql);
     }*/
 
 
+public function listado_documentos_enviados()
+    {
+        $documento= Documento::paginate(100); 
+        $sql="select * from documento where id_dependencia_c"; 
+        $paises=Pais::all();
+        return view('documentos.listar.listado_documentos')
+        ->with("paises", $paises )
+        ->with("documento", $documento );    
 
-
-
-	
+        /* $usuarios= Documento::paginate(1);  
+        $paises=Pais::all();
+        return view('listados.listado_usuarios')
+        ->with("paises", $paises )
+        ->with("usuarios", $usuarios );*/   
+}
 
 
 
@@ -168,10 +325,6 @@ $datos_fijos=DB::select($sql);
 		return view('formularios.form_nuevo_usuario');
 	}
 
-
-
-
-
 	public function listado_usuarios()
     {
         $usuarios= User::paginate(25);  
@@ -180,8 +333,6 @@ $datos_fijos=DB::select($sql);
         ->with("paises", $paises )
         ->with("usuarios", $usuarios );       
 	}
-
-
 	//presenta el formulario para nuevo usuario
 	public function agregar_nuevo_usuario(Request $request)
 	{
@@ -225,8 +376,6 @@ $datos_fijos=DB::select($sql);
             return view("mensajes.msj_rechazado")->with("msj","el usuario con ese id no existe o fue borrado");  
 		}
 	}
-
-
 
 		public function editar_usuario(Request $request)
 	{

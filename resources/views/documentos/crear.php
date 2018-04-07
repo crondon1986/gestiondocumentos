@@ -13,10 +13,9 @@
 
     <input id='id_html_documento' type="hidden" name="id_html_documento" value="">
 
-    <input id='id_dependencia' type="hidden" name="id_dependencia" value=" <?= $usuario->id_dependenciatony; ?>">
+    <input id='id_dependencia' type="hidden" name="id_dependencia" value=" <?= $usuario->id_dependencia; ?>">
     <input id='cedula_usuario' type="hidden" name="cedula_usuario" value=" <?= $usuario->cedula; ?>">
-    <input id='id_html_documento' type="hidden" name="id_html_documento" value="">
-
+    <input id='id_html_documento_pdf' type="hidden" name="id_html_documento_pdf" value="">
 
 <div class="box-body col-xs-12">
   <div  class="form-group col-xs-12">
@@ -50,9 +49,7 @@
 </div>
 
 <div class="" id="formulario_documento">
-    <p><h2>  cargar formulario de acuerdo a la plantilla del tipo de documento
-      seleccionado</h2>
-    </p>
+    
 </div>
 
 
@@ -61,7 +58,7 @@
 <div class="box-footer col-xs-12 ">
                     <button  id="generar_documento" type="button" class="btn btn-primary" >Generar</button>
                      <!--<button  id="generar_documento" type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Generar</button>-->
-                    <button  type="button" class="btn btn-primary">Cancelar1</button>
+                    <button  type="button" class="btn btn-primary">Cancelar</button>
 </div>
 
 <!-- Modal -->

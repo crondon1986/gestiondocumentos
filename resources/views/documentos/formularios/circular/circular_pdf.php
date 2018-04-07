@@ -1,7 +1,7 @@
 
 <?php
-echo '<pre>';//print_r($datos_fijos);
-print_r($data); 
+/*echo '<pre>';//print_r($datos_fijos);
+print_r($data); */
 
 /* echo '<pre>';print_r($datos_fijos);
 print_r($data); 
@@ -97,18 +97,20 @@ die();
 
 <p style="text-align:center"><span style="font-family:Arial,Helvetica,sans-serif"><span style="font-size:12px"><strong>DECANATO / <?= $datos_fijos[0]->Escuela; ?> </strong></span></span></p>
 
-<p style="text-align:center"><span style="font-family:Arial,Helvetica,sans-serif"><span style="font-size:12px"><strong></strong></span></span></p>
+<p style="text-align:center"><span style="font-family:Arial,Helvetica,sans-serif"><span style="font-size:12px"><strong><?= $datos_fijos[0]->dependencia; ?></strong></span></span></p>
 
-<p style="text-align:right"><span style="font-family:Arial,Helvetica,sans-serif"><span style="font-size:12px">cuman&aacute;, 20 de abril de 2018.</span></span></p>
+<p style="text-align:right"><span style="font-family:Arial,Helvetica,sans-serif"><span style="font-size:12px">cuman&aacute;</span></span></p>
 
-<p style="text-align:right"><span style="font-family:Arial,Helvetica,sans-serif"><span style="font-size:12px"><strong>DI-100/18</strong></span></span></p>
+<p style="text-align:right"><span style="font-family:Arial,Helvetica,sans-serif"><span style="font-size:12px"><strong></strong></span></span></p>
 
-<p><span style="font-family:Arial,Helvetica,sans-serif"><span style="font-size:12px"><strong>PARA: &nbsp;</strong></span></span></p>
+<p><span style="font-family:Arial,Helvetica,sans-serif"><span style="font-size:12px"><strong>PARA: &nbsp;<?= $data['para']; ?></strong></span></span></p>
 
-<p><span style="font-family:Arial,Helvetica,sans-serif"><span style="font-size:12px"><strong>DE: &nbsp;</strong></span></span></p>
+<p><span style="font-family:Arial,Helvetica,sans-serif"><span style="font-size:12px"><strong>DE: &nbsp;<?= $data['de']; ?></strong></span></span></p>
+
+<p style="text-align:center"><strong>Circular </strong></p>
 
 
-
+<?= $data['editor_html']; ?>
 
 
 
@@ -123,9 +125,9 @@ die();
 
 <p style="text-align:center"><span style="font-family:Arial,Helvetica,sans-serif"><span style="font-size:12px">__________________________</span></span></p>
 
-<p style="text-align:center"><span style="font-family:Arial,Helvetica,sans-serif"><span style="font-size:12px">Profa.<?= $datos_fijos[0]->nombres_profesor.' '.$datos_fijos[0]->apellidos_profesor; ?></span></span></p>
+<p style="text-align:center"><span style="font-family:Arial,Helvetica,sans-serif"><span style="font-size:12px">Profa. <?= $datos_fijos[0]->nombres_profesor.' '.$datos_fijos[0]->apellidos_profesor; ?></span></span></p>
 
-<p style="text-align:center"><span style="font-family:Arial,Helvetica,sans-serif"><span style="font-size:12px">Jefa del Departamento de Informatica.</span></span></p>
+<p style="text-align:center"><span style="font-family:Arial,Helvetica,sans-serif"><span style="font-size:12px">Jefa del <?= $datos_fijos[0]->dependencia; ?></span></span></p>
 
 <p style="text-align:center">&nbsp;</p>
 

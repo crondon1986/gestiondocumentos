@@ -46,10 +46,11 @@
       <header class="main-header">
         <!-- Logo -->
         <a href="index2.html" class="logo">
-          <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"><b>PlS</b></span>
-          <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>Plu</b>SIS</span>
+          <!-- mini logo for sidebar mini 50x50 pixels 
+          <span class="logo-mini"><b></b></span>
+          <!-- logo for regular state and mobile devices 
+          <span class="logo-lg"><b></span>-->
+
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
@@ -64,6 +65,7 @@
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                 <?php if($usuario->imagenurl==""){ $usuario->imagenurl="imagenes/avatar.jpg"; }  ?>
                   <img src="<?=  $usuario->imagenurl;  ?>"  alt="User Image"  style="width:20px;height:20px;">
                   <span class="hidden-xs"><?=  $usuario->nombres;  ?></span>
                 </a>
@@ -73,8 +75,9 @@
                       <?php if($usuario->imagenurl==""){ $usuario->imagenurl="imagenes/avatar.jpg"; }  ?>
                       <img src="<?=  $usuario->imagenurl;  ?>"  alt="User Image"  style="width:50px;height:50px;">
                     <p>
-                     Usuario Plusis
-                      <small>Member since Nov. 2012</small>
+                    
+                      <span class="hidden-xs"><?=  $usuario->nombres;  ?></span>
+                      <small></small>
                     </p>
                   </li>
                   <!-- Menu Body -->
@@ -139,7 +142,7 @@
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu">
             <li class="header">MENÚ</li>
-            <li class="active treeview">
+           <!-- <li class="active treeview">
               <a href="#">
                 <i class="fa  fa-users"></i> <span>USUARIOS</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
@@ -180,7 +183,7 @@
                 <li class="active"><a href="javascript:void(0);" onclick="cargarlistado(3,1);" ><i class="fa fa-circle-o"></i> Reportes </a></li>
                 
               </ul>
-            </li> 
+            </li> -->
 
              <li class="treeview">
               <a href="#">
@@ -191,9 +194,9 @@
                  <li class="active"><a href="javascript:void(0);" onclick="cargar_formulario();" ><i class="fa fa-circle-o"></i> Recibidos </a></li>
                   <li class="active"><a href="javascript:void(0);" onclick="cargar_formulario();" ><i class="fa fa-circle-o"></i> Enviados </a></li>
 
-                   <li class="active"><a href="javascript:void(0);" onclick="cargar_formulario();" ><i class="fa fa-circle-o"></i> Por Correcciones </a></li>
+                   <li class="active"><a href="javascript:void(0);" onclick="1cargar_formulario();" ><i class="fa fa-circle-o"></i> Por Correcciones </a></li>
 
-                <li class="active"><a href="javascript:void(0);" onclick="cargarlistado(3,1);" ><i class="fa fa-circle-o"></i> listar Documentos </a></li>
+                <li class="active"><a href="javascript:void(0);" onclick="1cargarlistado(3,1);" ><i class="fa fa-circle-o"></i> listar Documentos </a></li>
                 
               </ul>
             </li>   
@@ -271,7 +274,16 @@
       </div><!-- /.content-wrapper -->
      
 
-
+      <footer class="main-footer">
+        <!-- To the right -->
+        <div class="pull-right hidden-xs">
+          Oficina de Informática        </div>
+        <!-- Default to the left -->
+        <strong id="copyrigth">Copyright © 2017 <a href="http://.com.ve/" target="_blank">Universidad de Oreinte</a>.</strong> All rights reserved.
+      </footer>
+        <!-- To the right -->
+     
+      
      
     </div><!-- ./wrapper -->
 
@@ -282,7 +294,7 @@
     <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 
-    <script>  $("#content-wrapper").css("min-height","2000px"); </script>
+    <script>  //$("#content-wrapper").css("min-height","2000px"); </script>
    
     <!-- Bootstrap 3.3.5 -->
     <script src="bootstrap/js/bootstrap.min.js"></script>
@@ -319,7 +331,8 @@
    <script src="js/sistemalaravel.js"></script>
    <script src="js/documentos.js"></script>
 
-   <script>cargarlistado(1);</script>
+  <!-- <script>cargarlistado(1);</script>-->
+  <script>cargarlistar(1);</script><!-- Lisar Archivos-->
 
 
   </body>

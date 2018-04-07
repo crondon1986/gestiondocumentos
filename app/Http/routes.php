@@ -10,24 +10,16 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
-
-
-
 Route::get('login', 'Auth\AuthController@getLogin');
 Route::post('login', ['as' =>'login', 'uses' => 'Auth\AuthController@postLogin']);
 Route::get('logout', ['as' => 'logout', 'uses' => 'Auth\AuthController@getLogout']);
- 
 // Registration routes...
 Route::get('register', 'Auth\AuthController@getRegister');
 Route::post('register', ['as' => 'auth/register', 'uses' => 'Auth\AuthController@postRegister']);
 Route::get('/', 'HomeController@index');
 Route::get('home', 'HomeController@index');
-
 //rutas
-
 Route::get('form_nuevo_usuario', 'UsuariosController@form_nuevo_usuario');
-
 Route::post('agregar_nuevo_usuario', 'UsuariosController@agregar_nuevo_usuario');
 Route::get('listado_usuarios/{page?}', 'UsuariosController@listado_usuarios');
 Route::get('form_editar_usuario/{id}', 'UsuariosController@form_editar_usuario');
@@ -53,19 +45,13 @@ Route::post('agregar_proyectos_usuario', 'ProyectosController@agregar_proyectos_
 Route::get('borrar_proyecto/{id}', 'ProyectosController@borrar_proyecto');
 //leccion 12 
 Route::get('buscar_usuarios/{pais}/{dato?}', 'UsuariosController@buscar_usuarios');
-
 //leccion 13
-
 Route::get('form_enviar_correo', 'CorreoController@crear');
 Route::post('enviar_correo', 'CorreoController@enviar');
 Route::post('cargar_archivo_correo', 'CorreoController@store');
-
 //leccion 14
-
 Route::get('reportes', 'PdfController@index');
 Route::get('crear_reporte_porpais/{tipo}', 'PdfController@crear_reporte_porpais');
-
-
 //pruebas
 Route::get('crear', 'Documento\DocumentoController@cargar_plantilla');
 //Route::get('login', 'Auth\AuthController@getLogin');
@@ -76,4 +62,4 @@ Route::get('crear_reporte/{codigo}', 'Documento\DocumentoController@generarpdf')
 Route::get('datos_subcatgoria/{codigo}', 'Documento\DocumentoController@datos_subcatgoria');
 Route::get('datos_itemsubcatgoria/{codigo}', 'Documento\DocumentoController@datos_itemsubcatgoria');
 Route::get('dependencias', 'Documento\DocumentoController@dependencias');
-
+Route::get('listado_documentos_enviados/{page?}', 'Documento\DocumentoController@listado_documentos_enviados');

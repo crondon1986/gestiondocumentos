@@ -87,11 +87,12 @@ function cargar_formulario(arg){
             $.get(url,function(resul){
             $("#formulario_documento").html(resul);
               initSample();
-            $("#id_departamento_d").select2();
+            $("#id_departamento_destino").select2();
+            $("#id_departamento_destino").append('<option value=""></option>');
 
             $.each(Arr_dependencia,function(key, registro) {
               
-              $("#id_departamento_d").append('<option value='+registro.id_dependencia+'>'+registro.nombre_dependencia+'</option>');
+              $("#id_departamento_destino").append('<option value='+registro.id_dependencia+'>'+registro.nombre_dependencia+'</option>');
               
               });
             })
@@ -106,15 +107,13 @@ function cargar_formulario(arg){
 //envio datos par cONSTRUIR LA PLANTILLA Y LEVANTAR LA MODAL
  $('#generar_documento').click(function(){
   //enviar formulario
-
-var contenido = CKEDITOR.instances['editor'].getData();
-
-alert(contenido);
-var varurl='cargarplantillapdf';
-var variablesFORM=$('#id_form_documentos').serialize();
+  var contenido = CKEDITOR.instances['editor'].getData();//estraer el html
+    $('#editor_html').val(contenido);
+//alert(contenido);
+  var varurl='cargarplantillapdf';
+  var variablesFORM=$('#id_form_documentos').serialize();
  // alert(variablesFORM);
    $.ajax({
-
                     type: "POST",
                     url : varurl,
                     datatype:'json',
@@ -129,7 +128,7 @@ var variablesFORM=$('#id_form_documentos').serialize();
                         //
                         //
                         $("#bloque_mostrar_documento_generado").html(resul);
-                         $("#id_html_documento").val(resul);
+                         $("#id_html_documento_pdf").val(resul);
                         $('#myModal').modal("show");
 
                     }
@@ -157,14 +156,10 @@ var variablesFORM=$('#id_form_documentos').serialize();
                         //}
                         //LEVANTAR MODAL
                         //
-          
                         $('#myModal').modal("hide");
-                        console.info(resul);
-                        urlpdf="crear_reporte/"+1+"";
-                         // window.location="crear_reporte_porpais/1";
-                      // window.open("crear_reporte_porpais/1","_blank")
-                      window.open(urlpdf,"_blank")
-
+                        listado_documentos_enviados();
+                        mostrarficha_pdf(resul);
+                        //console.info(resul);
                     }
 
                 });
@@ -172,6 +167,35 @@ var variablesFORM=$('#id_form_documentos').serialize();
 });
 
 }
+
+
+
+/********************Listar Documentos***********************/
+
+//Enviados
+
+function cargarlistar(listado){
+
+    //funcion para cargar los diferentes  en general
+if(listado==1){ var url = "listado_documentos_enviados"; }//enviados
+if(listado==2){ var url = "listado_publicaciones/0"; }
+if(listado==3){ var url = "reportes"; }
+
+$("#contenido_principal").html($("#cargador_empresa").html());
+$.get(url,function(resul){
+
+        $("#contenido_principal").html(resul); 
+})
+
+}
+
+function mostrarficha_pdf(resul){
+   urlpdf="crear_reporte/"+resul+"";
+                         // window.location="crear_reporte_porpais/1";
+                      // window.open("crear_reporte_porpais/1","_blank")
+                      window.open(urlpdf,"_blank");
+}
+
         
 
 
@@ -200,6 +224,8 @@ function cargarformulario(arg){
 		$.get(url,function(resul){
       $("#contenido_principal").html(resul);
     })
+
+
         
 
 }
@@ -279,15 +305,15 @@ $(document).on("click",".pagination li a",function(e){
   //leccion 7 
 function mostrarficha(id_usuario) {
   //funcion para mostrar y etditar la informacion del usuario
-  $("#usuario_seleccionado").val(id_usuario); // leccion10
+  $("#usuario_seleccionado").val(id_usuario);// leccion10
   $("#capa_modal").show();
   $("#capa_para_edicion").show();
   var url = "form_editar_usuario/"+id_usuario+""; 
   $("#contenido_capa_edicion").html($("#cargador_empresa").html());  //leccion 10
   $.get(url,function(resul){
-  $("#contenido_capa_edicion").html(resul);  //leccion 10
+  $("#contenido_capa_edicion").html(resul);//leccion 10
   })
-irarriba();
+  irarriba();
 }
 
 
