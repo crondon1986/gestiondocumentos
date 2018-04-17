@@ -125,7 +125,7 @@ die();
 
 <p style="text-align:center"><span style="font-family:Arial,Helvetica,sans-serif"><span style="font-size:12px">__________________________</span></span></p>
 
-<p style="text-align:center"><span style="font-family:Arial,Helvetica,sans-serif"><span style="font-size:12px">Profa. <?= $datos_fijos[0]->nombres_profesor.' '.$datos_fijos[0]->apellidos_profesor; ?></span></span></p>
+<p style="text-align:center"><span style="font-family:Arial,Helvetica,sans-serif"><span style="font-size:12px">Prof. <?= $datos_fijos[0]->nombres_profesor.' '.$datos_fijos[0]->apellidos_profesor; ?></span></span></p>
 
 <p style="text-align:center"><span style="font-family:Arial,Helvetica,sans-serif"><span style="font-size:12px">Jefa del <?= $datos_fijos[0]->dependencia; ?></span></span></p>
 
@@ -139,7 +139,8 @@ die();
 
 <p>&nbsp;</p>
 
-<p style="margin-left:0cm; margin-right:0cm; text-align:center"><span style="font-family:Arial,Helvetica,sans-serif"><span style="font-size:12px">Apartado de Correo 245/t&eacute;lex 93134 &ndash;UDONS VE / Cable Univoriente / Cerro Colorado / Cuman&aacute; / Venezuela</span></span></p>
+
+<!--<p style="margin-left:0cm; margin-right:0cm; text-align:center"><span style="font-family:Arial,Helvetica,sans-serif"><span style="font-size:12px">Apartado de Correo 245/t&eacute;lex 93134 &ndash;UDONS VE / Cable Univoriente / Cerro Colorado / Cuman&aacute; / Venezuela</span></span></p>-->
 
 <p>&nbsp;</p>
 

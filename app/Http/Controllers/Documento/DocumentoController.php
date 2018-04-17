@@ -107,7 +107,7 @@ Circular
 )*/
 
 $data=$request->all();
-      	$codigo=$data['categoria_documento'];
+      	$codigo=$data['id_documento'];
     switch ($codigo) {
     	case '1': //circular
 
@@ -115,7 +115,7 @@ $data=$request->all();
     	Para convocatorias
     	1 Por firmar
     	2 Por Modificar
-    	4 Enviado
+    	3 listado_documentos_enviados
     	5 Leido
     	*/
 
@@ -130,18 +130,36 @@ if($usuarioactual->id_perfil==3){//secretaria
     $descripcion_documento= $data['descricion_documeto'];
     $estatus=1;//por firmar
     $categoria_documento=$data['categoria_documento'];
-    $id_documento=$data['id_documento'];
+    $id_documento=$data['id_documento'];//subcategoria
+    $editor_html=$data['editor_html'];
 
-
-
+   $para=$data['para'];
+    $de=$data['de'];
     $documento= new Documento;
     $documento->codigo_plantilla=$codigo_documento_generado;
     $documento->descripcion_documento=$descripcion_documento;
     $documento->id_usuario=$usuarioactual->cedula;
     $documento->id_subcategoria= $id_documento;
     $documento->html_documento=$cuerpo_documento_html;
-     $documento->id_dependencia_c=$id_dependencia;
+    $documento->id_dependencia_c=$id_dependencia;
 
+    //guardar tabla Circular
+
+
+    //GUadar envio a los deparatmento
+   /* $circular=new Circular;
+    $circular->codigo_circular=$codigo_documento_generado;
+    $circular->cedula_jefe='';
+    $circular->nota_circular='';
+    $circular->para_circular=$para;
+    $circular->de_circular=$de;
+    $circular->id_subcategoria=$id_documento;
+    $id_itemsubcategria='';
+    $cicular->cuerpo_circular =$editor_html;
+    $circular->html_circular=$cuerpo_documento_html;*/
+
+
+    //$resul= $documento->save();
     $resul= $documento->save();
 
 }
@@ -202,25 +220,10 @@ Circular
     		# code...
     		break;
     }
-
-      	/*$usuario= new Documento;
-		$usuario->codigo  = "100";
-		$usuario->descripcion_documento=$data["descricion_documeto"];
-		$usuario->pais=$data["pais"];
-		$usuario->ciudad=$data["ciudad"];
-		$usuario->email=$data["email"];
-		$usuario->institucion=$data["institucion"];
-		$usuario->ocupacion=$data["ocupacion"];
-		$usuario->password=bcrypt($data["password"]);
-
-		$resul= $usuario->save();*/
-
-
-
 		$view=$codigo_documento_generado;
 		return $view; //view('documentos.formularios.circular.circular_pdf')->with("data",$data);
 
-	}
+}
 
 	public function generarpdf($codigo){
 		//$view=$data['id_html_documento'];

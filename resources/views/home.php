@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Sistema | Panel Control</title>
+    <title>Sistema | Gestion Documentos</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -142,18 +142,18 @@
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu">
             <li class="header">MENÚ</li>
-           <!-- <li class="active treeview">
+           <li class=" treeview">
               <a href="#">
                 <i class="fa  fa-users"></i> <span>USUARIOS</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
                 <li class="active"><a href="javascript:void(0);" onclick="cargarformulario(1);" ><i class="fa fa-circle-o"></i>Agregar usuario </a></li>
                 <li class="active"><a href="javascript:void(0);" onclick="cargarlistado(1,1);" ><i class="fa fa-circle-o"></i>Listado Usuarios</a></li>
-                <li class="active"><a href="javascript:void(0);" onclick="cargarlistado(2,1);" ><i class="fa fa-circle-o"></i>Publicaciones</a></li>
+               <!-- <li class="active"><a href="javascript:void(0);" onclick="cargarlistado(2,1);" ><i class="fa fa-circle-o"></i>Publicaciones</a></li>-->
               </ul>
             </li>  
 
-
+<!--
               <li class="treeview">
               <a href="#">
                 <i class="fa fa-fw fa-envelope"></i> <span>CORREO</span> <i class="fa fa-angle-left pull-right"></i>
@@ -183,23 +183,25 @@
                 <li class="active"><a href="javascript:void(0);" onclick="cargarlistado(3,1);" ><i class="fa fa-circle-o"></i> Reportes </a></li>
                 
               </ul>
-            </li> -->
-
-             <li class="treeview">
+            </li> 
+-->
+             <li class=" active treeview">
               <a href="#">
                 <i class="fa fa-fw fa-database"></i> <span>Documentos</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
-              <ul class="treeview-menu">
+              <ul class=" treeview-menu">
                 <li class="active"><a href="javascript:void(0);" onclick="cargar_formulario();" ><i class="fa fa-circle-o"></i> Crear </a></li>
-                 <li class="active"><a href="javascript:void(0);" onclick="cargar_formulario();" ><i class="fa fa-circle-o"></i> Recibidos </a></li>
-                  <li class="active"><a href="javascript:void(0);" onclick="cargar_formulario();" ><i class="fa fa-circle-o"></i> Enviados </a></li>
+                 <li class="active"><a href="javascript:void(0);" onclick="1cargar_formulario();" ><i class="fa fa-circle-o"></i> Recibidos </a></li>
+                  <li class="active"><a href="javascript:void(0);" onclick="cargarlistar(1);" ><i class="fa fa-circle-o"></i> Enviados </a></li>
 
-                   <li class="active"><a href="javascript:void(0);" onclick="1cargar_formulario();" ><i class="fa fa-circle-o"></i> Por Correcciones </a></li>
+                   <li class="active"><a href="javascript:void(0);" onclick="cargarlistar(1);" ><i class="fa fa-circle-o"></i> Por Correcciones </a></li>
 
-                <li class="active"><a href="javascript:void(0);" onclick="1cargarlistado(3,1);" ><i class="fa fa-circle-o"></i> listar Documentos </a></li>
+               <!-- <li class="active"><a href="javascript:void(0);" onclick="cargarlistar(1);" ><i class="fa fa-circle-o"></i> listar Documentos </a></li>-->
                 
               </ul>
-            </li>   
+            </li> 
+
+              
 
 
           
@@ -277,9 +279,9 @@
       <footer class="main-footer">
         <!-- To the right -->
         <div class="pull-right hidden-xs">
-          Oficina de Informática        </div>
+               </div>
         <!-- Default to the left -->
-        <strong id="copyrigth">Copyright © 2017 <a href="http://.com.ve/" target="_blank">Universidad de Oreinte</a>.</strong> All rights reserved.
+        <strong id="copyrigth">Copyright © 2018 <a href="http://.com.ve/" target="_blank">Universidad de Oreinte</a>.</strong> All rights reserved.
       </footer>
         <!-- To the right -->
      

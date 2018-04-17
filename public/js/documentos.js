@@ -157,7 +157,8 @@ var variablesFORM=$('#id_form_documentos').serialize();
                         //LEVANTAR MODAL
                         //
                         $('#myModal').modal("hide");
-                        listado_documentos_enviados();
+                       //listado_documentos_enviados(1);
+                        cargarlistar(1);
                         mostrarficha_pdf(resul);
                         //console.info(resul);
                     }
@@ -186,6 +187,8 @@ $.get(url,function(resul){
 
         $("#contenido_principal").html(resul); 
 })
+
+
 
 }
 
