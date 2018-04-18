@@ -48,7 +48,7 @@ if( count($usuarios) >0){
              <th style="width:10px">Id</th>
                 <th>Nombres</th>
                 <th>email</th>
-                <th>pais</th>
+               
                 <th>instituccion</th>
                 <th>ocupacion</th>
                 <th>Fecha Creado</th>
@@ -71,7 +71,6 @@ if( count($usuarios) >0){
     <td class="sorting_1"><?= $usuario->id; ?></td>
     <td class="mailbox-messages mailbox-name" ><a href="javascript:void(0);" onclick="mostrarficha(<?= $usuario->id; ?>);"  style="display:block"><i class="fa fa-user"></i>&nbsp;&nbsp;<?= $usuario->nombres." ".$usuario->apellidos;  ?></a></td>
     <td><?= $usuario->email;  ?></td>
-    <td><?= $usuario->delpais->nombre;  ?></td>
     <td><?= $usuario->institucion;  ?></td>
     <td><?= $usuario->ocupacion;  ?></td>
     <td><?= $usuario->created_at;  ?></td>
